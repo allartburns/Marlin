@@ -150,6 +150,9 @@
 #ifndef FAN1_PIN
   #define FAN1_PIN                             8
 #endif
+#ifndef FAN2_PIN
+  #define FAN2_PIN                             8
+#endif
 
 //
 // Misc. Functions

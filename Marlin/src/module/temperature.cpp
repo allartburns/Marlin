@@ -582,15 +582,19 @@ volatile bool Temperature::raw_temps_ready = false;
         SERIAL_ECHOLNPGM(STR_PID_AUTOTUNE_FINISHED);
 
         #if HAS_PID_FOR_BOTH
+        SERIAL_ECHOLNPGM("has_pid_for_both");
           const char * const estring = GHV(PSTR("bed"), NUL_STR);
+
           say_default_(); serialprintPGM(estring); SERIAL_ECHOLNPAIR("Kp ", tune_pid.Kp);
           say_default_(); serialprintPGM(estring); SERIAL_ECHOLNPAIR("Ki ", tune_pid.Ki);
           say_default_(); serialprintPGM(estring); SERIAL_ECHOLNPAIR("Kd ", tune_pid.Kd);
         #elif ENABLED(PIDTEMP)
+        SERIAL_ECHOLNPGM("pidtemp");
           say_default_(); SERIAL_ECHOLNPAIR("Kp ", tune_pid.Kp);
           say_default_(); SERIAL_ECHOLNPAIR("Ki ", tune_pid.Ki);
           say_default_(); SERIAL_ECHOLNPAIR("Kd ", tune_pid.Kd);
         #else
+        SERIAL_ECHOLNPGM("no pidtemp");
           say_default_(); SERIAL_ECHOLNPAIR("bedKp ", tune_pid.Kp);
           say_default_(); SERIAL_ECHOLNPAIR("bedKi ", tune_pid.Ki);
           say_default_(); SERIAL_ECHOLNPAIR("bedKd ", tune_pid.Kd);
@@ -603,7 +607,7 @@ volatile bool Temperature::raw_temps_ready = false;
         }while(0)
 
         #define _SET_EXTRUDER_PID() do { \
-          PID_PARAM(Kp, heater) = tune_pid.Kp; \
+          PID_PARAM(Kp, heater) = tune_pid.Kp;         \
           PID_PARAM(Ki, heater) = scalePID_i(tune_pid.Ki); \
           PID_PARAM(Kd, heater) = scalePID_d(tune_pid.Kd); \
           updatePID(); }while(0)
@@ -677,10 +681,12 @@ int16_t Temperature::getHeaterPower(const heater_ind_t heater_id) {
   #define CHAMBER_FAN_INDEX HOTENDS
 
   void Temperature::checkExtruderAutoFans() {
-    #define _EFAN(B,A) _EFANOVERLAP(A,B) ? B :
+        SERIAL_ECHOLNPGM("check extruder auto fans");
+    #define _EFAN(B,A) _EFANOVERLAP(A,B) ? B : 
     static const uint8_t fanBit[] PROGMEM = {
       0
       #if HOTENDS > 1
+      // then we go in to an infinite loop
         #define _NEXT_FAN(N) , REPEAT2(N,_EFAN,N) N
         RREPEAT_S(1, HOTENDS, _NEXT_FAN)
       #endif
@@ -689,12 +695,13 @@ int16_t Temperature::getHeaterPower(const heater_ind_t heater_id) {
         , REPEAT(HOTENDS,_CFAN) (HOTENDS)
       #endif
     };
+        SERIAL_ECHOLNPGM("check extruder auto fans 2");
 
     uint8_t fanState = 0;
     HOTEND_LOOP()
       if (temp_hotend[e].celsius >= EXTRUDER_AUTO_FAN_TEMPERATURE)
+        SERIAL_ECHOLNPGM("check extruder auto fans 1");
         SBI(fanState, pgm_read_byte(&fanBit[e]));
-
     #if HAS_AUTO_CHAMBER_FAN
       if (temp_chamber.celsius >= CHAMBER_AUTO_FAN_TEMPERATURE)
         SBI(fanState, pgm_read_byte(&fanBit[CHAMBER_FAN_INDEX]));
@@ -706,6 +713,8 @@ int16_t Temperature::getHeaterPower(const heater_ind_t heater_id) {
       else                                               \
         WRITE(P##_AUTO_FAN_PIN, D);                      \
     }while(0)
+
+              SERIAL_ECHOLNPGM("check extruder auto fans 1");
 
     uint8_t fanDone = 0;
     LOOP_L_N(f, COUNT(fanBit)) {
@@ -724,6 +733,7 @@ int16_t Temperature::getHeaterPower(const heater_ind_t heater_id) {
           #endif
           break;
       }
+        SERIAL_ECHOLNPGM("check extruder auto fans 3");
 
       switch (f) {
         #if HAS_AUTO_FAN_0
@@ -754,6 +764,7 @@ int16_t Temperature::getHeaterPower(const heater_ind_t heater_id) {
           case CHAMBER_FAN_INDEX: _UPDATE_AUTO_FAN(CHAMBER, fan_on, CHAMBER_AUTO_FAN_SPEED); break;
         #endif
       }
+  SERIAL_ECHOLNPGM("check extruder auto fans done");
       SBI(fanDone, realFan);
     }
   }

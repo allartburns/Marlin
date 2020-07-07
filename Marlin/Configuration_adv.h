@@ -422,8 +422,8 @@
  */
 // on the dual-extruder BigBox, both extruder fans
 // share the same on/off pin
-#define E0_AUTO_FAN_PIN 8
-#define E1_AUTO_FAN_PIN 8
+#define E0_AUTO_FAN_PIN FAN1_PIN
+#define E1_AUTO_FAN_PIN FAN1_PIN
 #define E2_AUTO_FAN_PIN -1
 #define E3_AUTO_FAN_PIN -1
 #define E4_AUTO_FAN_PIN -1
