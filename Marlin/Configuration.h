@@ -315,7 +315,7 @@
 // Offset of the extruders (uncomment if using more than one and relying on firmware to position when changing).
 // The offset has to be X=0, Y=0 for the extruder 0 hotend (default extruder).
 // For the other hotends it is their distance from the extruder 0 hotend.
-#define HOTEND_OFFSET_X { 0.0, 38.00 } // (mm) relative X-offset for each nozzle
+// #define HOTEND_OFFSET_X { 0.0, 38.00 } // (mm) relative X-offset for each nozzle
 //#define HOTEND_OFFSET_Y { 0.0, 5.00 }  // (mm) relative Y-offset for each nozzle
 //#define HOTEND_OFFSET_Z { 0.0, 0.00 }  // (mm) relative Z-offset for each nozzle
 
@@ -997,7 +997,7 @@
  * Specify a Probe position as { X, Y, Z }
  */
 // I started with Z = -4 then used M851 and m500 to dial it down to -3.7
-#define NOZZLE_TO_PROBE_OFFSET { -20, 0, -3.7 }
+#define NOZZLE_TO_PROBE_OFFSET { -17, 0, -3.7 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1133,7 +1133,7 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 290 // because the right extruder bangs in to the stepper at 300
+#define X_BED_SIZE 300
 #define Y_BED_SIZE 200
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
@@ -1165,7 +1165,7 @@
 #define MAX_SOFTWARE_ENDSTOPS
 #if ENABLED(MAX_SOFTWARE_ENDSTOPS)
   #define MAX_SOFTWARE_ENDSTOP_X
-  #define MAX_SOFTWARE_ENDSTOP_Y
+//  #define MAX_SOFTWARE_ENDSTOP_Y  We need to go outside the bed to park the extruders
   #define MAX_SOFTWARE_ENDSTOP_Z
 #endif
 
