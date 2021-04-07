@@ -339,10 +339,8 @@
   #endif
 #endif
 
-// jet this is deprecated
-//#define POWER_SUPPLY 1
 #define PSU_CONTROL true
-#define PSU_ACTIVE_HIGH false
+#define PSU_ACTIVE_STATE false
 // @section temperature
 
 //===========================================================================
@@ -2215,7 +2213,7 @@
 // RepRapDiscount FULL GRAPHIC Smart Controller
 // https://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller
 //
-#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
+// #define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
 
 //
 // K.3D Full Graphic Smart Controller
