@@ -2050,6 +2050,7 @@
 //
 // Note: Usually sold with a white PCB.
 //
+// knob does not work
 //#define REPRAP_DISCOUNT_SMART_CONTROLLER
 
 //
@@ -2113,6 +2114,7 @@
 //
 // Generic 16x2, 16x4, 20x2, or 20x4 character-based LCD.
 //
+// tried both, knob doesn't work on either
 #define ULTRA_LCD
 #define DOGLCD
 #define ST7920_DELAY_1 DELAY_NS(200) // after CLK LOW
@@ -2224,6 +2226,7 @@
 // ReprapWorld Graphical LCD
 // https://reprapworld.com/?products_details&products_id/1218
 //
+// works, knob is jumpy
 //#define REPRAPWORLD_GRAPHICAL_LCD
 
 //
