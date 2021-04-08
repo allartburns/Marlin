@@ -2115,11 +2115,11 @@
 // Generic 16x2, 16x4, 20x2, or 20x4 character-based LCD.
 //
 // tried both, knob doesn't work on either
-#define ULTRA_LCD
-#define DOGLCD
-#define ST7920_DELAY_1 DELAY_NS(200) // after CLK LOW
-#define ST7920_DELAY_2 DELAY_NS(400) // after DAT
-#define ST7920_DELAY_3 DELAY_NS(200) // after CLK HIGH
+// #define ULTRA_LCD
+// #define DOGLCD
+// #define ST7920_DELAY_1 DELAY_NS(200) // after CLK LOW
+// #define ST7920_DELAY_2 DELAY_NS(400) // after DAT
+// #define ST7920_DELAY_3 DELAY_NS(200) // after CLK HIGH
 
 
 //=============================================================================
@@ -2215,7 +2215,10 @@
 // RepRapDiscount FULL GRAPHIC Smart Controller
 // https://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller
 //
-// #define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
+#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
+#define ST7920_DELAY_1 DELAY_NS(200) // after CLK LOW
+#define ST7920_DELAY_2 DELAY_NS(400) // after DAT
+#define ST7920_DELAY_3 DELAY_NS(200) // after CLK HIGH
 
 //
 // K.3D Full Graphic Smart Controller
