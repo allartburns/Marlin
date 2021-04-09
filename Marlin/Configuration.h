@@ -132,7 +132,7 @@
 
 // Name displayed in the LCD "Ready" message and Info menu
 //#define CUSTOM_MACHINE_NAME "3D Printer"
-#define CUSTOM_MACHINE_NAME "E3D BigBox 2.0.5.3"
+#define CUSTOM_MACHINE_NAME "E3D BigBox 2.0.7.2"
 
 // Printer's unique ID, used by some programs to differentiate between machines.
 // Choose your own or use a service like https://www.uuidgenerator.net/version4
@@ -339,10 +339,8 @@
   #endif
 #endif
 
-// jet this is deprecated
-//#define POWER_SUPPLY 1
 #define PSU_CONTROL true
-#define PSU_ACTIVE_HIGH false
+#define PSU_ACTIVE_STATE false
 // @section temperature
 
 //===========================================================================
@@ -567,6 +565,12 @@
   //#define DEFAULT_bedKp 10.00
   //#define DEFAULT_bedKi .023
   //#define DEFAULT_bedKd 305.4
+
+  //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
+  //from pidautotune
+  //#define DEFAULT_bedKp 97.1
+  //#define DEFAULT_bedKi 1.41
+  //#define DEFAULT_bedKd 1675.16
 
   // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
 #endif // PIDTEMPBED
@@ -2110,11 +2114,11 @@
 //
 // Generic 16x2, 16x4, 20x2, or 20x4 character-based LCD.
 //
-#define ULTRA_LCD
-#define DOGLCD
-#define ST7920_DELAY_1 DELAY_NS(200) // after CLK LOW
-#define ST7920_DELAY_2 DELAY_NS(400) // after DAT
-#define ST7920_DELAY_3 DELAY_NS(200) // after CLK HIGH
+// #define ULTRA_LCD
+// #define DOGLCD
+// #define ST7920_DELAY_1 DELAY_NS(200) // after CLK LOW
+// #define ST7920_DELAY_2 DELAY_NS(400) // after DAT
+// #define ST7920_DELAY_3 DELAY_NS(200) // after CLK HIGH
 
 
 //=============================================================================
@@ -2209,8 +2213,11 @@
 //
 // RepRapDiscount FULL GRAPHIC Smart Controller
 // https://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller
-//
+// need delays to fix graphics timing problem
 #define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
+#define ST7920_DELAY_1 DELAY_NS(200) // after CLK LOW
+#define ST7920_DELAY_2 DELAY_NS(400) // after DAT
+#define ST7920_DELAY_3 DELAY_NS(200) // after CLK HIGH
 
 //
 // K.3D Full Graphic Smart Controller
