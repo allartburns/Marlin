@@ -132,7 +132,7 @@
 
 // Name displayed in the LCD "Ready" message and Info menu
 //#define CUSTOM_MACHINE_NAME "3D Printer"
-#define CUSTOM_MACHINE_NAME "E3D BigBox 2.0.5.3"
+#define CUSTOM_MACHINE_NAME "E3D BigBox 2.0.7.2"
 
 // Printer's unique ID, used by some programs to differentiate between machines.
 // Choose your own or use a service like https://www.uuidgenerator.net/version4
